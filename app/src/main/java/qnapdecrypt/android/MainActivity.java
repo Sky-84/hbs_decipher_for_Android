@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private Button but_reset;
 
     private static final String PLAIN_NAME_PREFIX = "plain_";
-    private QNAPFileDecrypterEngine cipherEngine = new QNAPFileDecrypterEngine(true, false);
+    private QNAPFileDecrypterEngine cipherEngine = new QNAPFileDecrypterEngine(false, false);
     File srcFile;
     File dstFile;
     private List<File> errorFiles = new ArrayList<>();
@@ -242,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
             txtInfo.setText("No files to decipher.");
         }
 
-        //writeReportFile();
+        writeReportFile();
 
     }
 
@@ -315,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
                                 password = userInput.getText().toString();
-                                if (password!="") {
+                                if (!password.equals("")) {
                                     if(tv_source.getText().toString().equals("")) {
                                         txtInfo.setText("Select Source");
                                     }
@@ -347,5 +349,35 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void writeReportFile() {
+        // Write errors in file
+        File resFile;
+        if (dstFile.isDirectory()) {
+            resFile = new File(dstFile.getAbsolutePath() + File.separator + NAME_FILE_REPORT);
+        } else {
+            resFile = new File(dstFile.getParentFile().getAbsolutePath() + File.separator + NAME_FILE_REPORT);
+        }
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("Files in success for decipher operations in Hybrid Backup Sync utility :"
+                + System.lineSeparator() + System.lineSeparator());
+        for (File eachSuccessPath : successFiles) {
+            builder.append(eachSuccessPath.getAbsolutePath() + System.lineSeparator());
+        }
+        builder.append(System.lineSeparator() + "----------------" + System.lineSeparator() + System.lineSeparator());
+        builder.append("Files in error for decipher operations in Hybrid Backup Sync utility :" + System.lineSeparator()
+                + System.lineSeparator());
+        for (File eachErrorPath : errorFiles) {
+            builder.append(eachErrorPath.getAbsolutePath() + System.lineSeparator());
+        }
+
+        byte[] buf = builder.toString().getBytes();
+        try {
+            FileOutputStream outstream = new FileOutputStream(resFile);
+            outstream.write(buf);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
