@@ -1,262 +1,272 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollViewMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e9e9e9"
-    android:orientation="vertical">
+    android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/header"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="Hybrid Backup Sync decipher utility\n- Unofficial tool -"
-        android:textAppearance="?android:textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/source"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="false"
-        android:gravity="left"
-        android:padding="2dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/header"
-        android:text="Source :"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:layout_marginLeft="5dp" />
-
-    <TextView
-        android:id="@+id/tv_source"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:layout_centerHorizontal="false"
-        android:gravity="left"
-        android:padding="5dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_below="@+id/source"
-        android:text=""
-        android:textAppearance="?android:textAppearanceMedium" />
-
-    <LinearLayout
-        android:id="@+id/src_buttonsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_source"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="5dp">
+        android:background="#e9e9e9"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/src_fold_text"
-            android:layout_width="wrap_content"
+            android:id="@+id/header"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:text="Select folder"
-            android:textAppearance="?android:textAppearanceSmall"
-            />
-
-        <ImageView
-            android:id="@+id/src_fold_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
             android:padding="5dp"
-            android:clickable="true"
-            android:onClick="selectSourceFolder"
-            android:background="#fff"
-            android:src="@drawable/fp_folder" />
-
+            android:text="Hybrid Backup Sync decipher utility\n- Unofficial tool -"
+            android:textAppearance="?android:textAppearanceMedium" />
 
         <TextView
-            android:id="@+id/src_file_text"
+            android:id="@+id/source"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="false"
+            android:gravity="left"
             android:padding="2dp"
-            android:text="Select file"
-            android:textAppearance="?android:textAppearanceSmall"
-            />
-
-
-        <ImageView
-            android:id="@+id/src_file_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:padding="5dp"
-            android:clickable="true"
-            android:onClick="selectSourceFile"
-            android:background="#fff"
-            android:src="@drawable/fp_file" />
-
-    </LinearLayout>
-
-    <CheckBox android:id="@+id/cb_recursive"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recursive mode (if directory selected)"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_below="@+id/src_buttonsLayout"
-        android:onClick="recursiveMode"
-        android:layout_marginLeft="10dp" />
-
-
-
-
-    <TextView
-        android:id="@+id/destination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="false"
-        android:gravity="left"
-        android:padding="2dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/cb_recursive"
-        android:text="Destination :"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:layout_marginLeft="5dp" />
-
-    <TextView
-        android:id="@+id/tv_destination"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:layout_centerHorizontal="false"
-        android:gravity="left"
-        android:padding="5dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_below="@+id/destination"
-        android:text=""
-        android:textAppearance="?android:textAppearanceMedium" />
-
-    <LinearLayout
-        android:id="@+id/dst_buttonsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_destination"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="5dp">
+            android:layout_below="@+id/header"
+            android:text="Source :"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:layout_marginLeft="5dp" />
 
         <TextView
-            android:id="@+id/dst_fold_text"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_source"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:text="Select folder"
-            android:textAppearance="?android:textAppearanceSmall"
-            />
-
-        <ImageView
-            android:id="@+id/dst_fold_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:background="#fff"
+            android:layout_centerHorizontal="false"
+            android:gravity="left"
+            android:padding="5dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_below="@+id/source"
+            android:text=""
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <LinearLayout
+            android:id="@+id/src_buttonsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_source"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/src_fold_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="Select folder"
+                android:textAppearance="?android:textAppearanceSmall"
+                />
+
+            <ImageView
+                android:id="@+id/src_fold_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp"
+                android:clickable="true"
+                android:onClick="selectSourceFolder"
+                android:background="#fff"
+                android:src="@drawable/fp_folder" />
+
+
+            <TextView
+                android:id="@+id/src_file_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="Select file"
+                android:textAppearance="?android:textAppearanceSmall"
+                />
+
+
+            <ImageView
+                android:id="@+id/src_file_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp"
+                android:clickable="true"
+                android:onClick="selectSourceFile"
+                android:background="#fff"
+                android:src="@drawable/fp_file" />
+
+        </LinearLayout>
+
+        <CheckBox android:id="@+id/cb_recursive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recursive mode (if directory selected)"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:padding="5dp"
-            android:clickable="true"
-            android:onClick="selectDestinationFolder"
-            android:background="#fff"
-            android:src="@drawable/fp_folder" />
+            android:layout_marginStart="10dp"
+            android:layout_below="@+id/src_buttonsLayout"
+            android:onClick="recursiveMode"
+            android:layout_marginLeft="10dp" />
+
+
 
 
         <TextView
-            android:id="@+id/dst_file_text"
+            android:id="@+id/destination"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="false"
+            android:gravity="left"
             android:padding="2dp"
-            android:text="Select file"
-            android:textAppearance="?android:textAppearanceSmall"
-            />
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/cb_recursive"
+            android:text="Destination :"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:layout_marginLeft="5dp" />
 
-
-        <ImageView
-            android:id="@+id/dst_file_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <TextView
+            android:id="@+id/tv_destination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:layout_centerHorizontal="false"
+            android:gravity="left"
+            android:padding="5dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_below="@+id/destination"
+            android:text=""
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <LinearLayout
+            android:id="@+id/dst_buttonsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_destination"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/dst_fold_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="Select folder"
+                android:textAppearance="?android:textAppearanceSmall"
+                />
+
+            <ImageView
+                android:id="@+id/dst_fold_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp"
+                android:clickable="true"
+                android:onClick="selectDestinationFolder"
+                android:background="#fff"
+                android:src="@drawable/fp_folder" />
+
+
+            <TextView
+                android:id="@+id/dst_file_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="2dp"
+                android:text="Select file"
+                android:textAppearance="?android:textAppearanceSmall"
+                />
+
+
+            <ImageView
+                android:id="@+id/dst_file_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp"
+                android:clickable="true"
+                android:onClick="selectDestinationFile"
+                android:background="#fff"
+                android:src="@drawable/fp_file" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/footer_buttonsLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dst_buttonsLayout"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:padding="5dp"
-            android:clickable="true"
-            android:onClick="selectDestinationFile"
-            android:background="#fff"
-            android:src="@drawable/fp_file" />
+            android:padding="10dp">
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/button_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginRight="10dp"
+                android:onClick="passwordButton"
+                android:text="Password"
+                />
 
-    <LinearLayout
-        android:id="@+id/footer_buttonsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dst_buttonsLayout"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:padding="10dp">
+            <Button
+                android:id="@+id/button_decypher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:padding="10dp"
+                android:onClick="decipherButton"
+                android:enabled="false"
+                android:text="Decipher !"
+                />
 
-        <Button
-            android:id="@+id/button_password"
+            <Button
+                android:id="@+id/button_reset"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="30dp"
+                android:onClick="resetButton"
+                android:text="Reset"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/TxtInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginRight="10dp"
-            android:onClick="passwordButton"
-            android:text="Password"
-            />
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="Select Source"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/footer_buttonsLayout"
+            android:textColor="#f00"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <Button
-            android:id="@+id/button_decypher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:padding="10dp"
-            android:onClick="decipherButton"
-            android:enabled="false"
-            android:text="Decipher !"
-            />
+    </RelativeLayout>
 
-        <Button
-            android:id="@+id/button_reset"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="30dp"
-            android:onClick="resetButton"
-            android:text="Reset"
-            />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/TxtInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:text="Select Source"
-        android:layout_marginBottom="10dp"
-        android:textColor="#f00"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-</RelativeLayout>
+</ScrollView>
