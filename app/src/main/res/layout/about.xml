@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+    <TextView android:id="@+id/about_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About"
+        android:layout_centerHorizontal="true"
+        android:paddingTop="5dp"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <TextView android:id="@+id/about_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/about_header"
+        android:text="This app is an Android implementation of the desktop tool made by Mikiya83."
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"/>
+
+    <ImageView android:id="@+id/div1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/about_title"
+        android:scaleType="fitXY"
+        tools:ignore="ContentDescription"
+        android:src="@android:drawable/divider_horizontal_bright"/>
+
+    <LinearLayout
+        android:id="@+id/link_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/div1"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView android:id="@+id/gitpage_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingEnd="30dp"
+            android:text="@string/gitHome" />
+
+        <TextView android:id="@+id/issue_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingStart="30dp"
+            android:text="@string/gitIssue" />
+
+    </LinearLayout>
+
+	<ImageView android:id="@+id/div2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/link_Layout"
+        android:scaleType="fitXY"
+        tools:ignore="ContentDescription"
+        android:src="@android:drawable/divider_horizontal_bright"/>
+
+    <TextView android:id="@+id/disclaimer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/div2"
+        android:padding="5dp"
+        android:text="This software comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to redistribute it under the conditions of the GPL version 3 or later."/>
+
+    <ImageView android:id="@+id/div3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/disclaimer"
+        android:scaleType="fitXY"
+        tools:ignore="ContentDescription"
+        android:src="@android:drawable/divider_horizontal_bright"/>
+
+    <TextView android:id="@+id/about_credits"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/div3"
+        android:padding="5dp"
+        android:text="CREDITS:"/>
+
+    <TextView android:id="@+id/about_icon"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/about_credits"
+        android:padding="5dp"
+        android:text="@string/iconweb"/>
+
+    <TextView android:id="@+id/about_mikiya"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/about_icon"
+        android:padding="5dp"
+        android:text="@string/mikiya_web"/>
+
+    <TextView android:id="@+id/about_kashifo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/about_mikiya"
+        android:padding="5dp"
+        android:text="@string/kashifo_web"/>
+
+    <Button android:id="@+id/about_button"
+  	  android:layout_height="wrap_content"
+  	  android:layout_width="wrap_content"
+  	  android:layout_below="@id/about_kashifo"
+  	  android:layout_centerHorizontal="true"
+  	  android:text="@android:string/ok"
+  	  android:width="5dp"/>
+</RelativeLayout>

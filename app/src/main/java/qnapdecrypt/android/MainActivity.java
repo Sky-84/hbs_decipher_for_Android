@@ -3,6 +3,8 @@ package qnapdecrypt.android;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.Manifest;
+import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -10,12 +12,21 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -36,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int SDCARD_PERMISSION = 1,
             FOLDER_PICKER_CODE = 2,
             FILE_PICKER_CODE = 3;
+
+    private static final int PASSWORD_CODE = 4;
 
     private String pick_type=""; //Source or Destination
 
@@ -82,57 +95,111 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.main,menu);
+        return true;
+    }
 
-    /*
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_about:
 
-        if (requestCode == REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION) {
-            int grantResultsLength = grantResults.length;
-            if (grantResultsLength > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(getApplicationContext(), "You grant write external storage permission. Please click original button again to continue.", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(getApplicationContext(), "You denied write external storage permission.", Toast.LENGTH_LONG).show();
-            }
+                final Dialog d=new Dialog(this);
+                d.setTitle("About");
+                d.setContentView(R.layout.about);
+
+                //Homepage
+                TextView gitView =(TextView) d.findViewById(R.id.gitpage_link);
+                gitView.setMovementMethod(LinkMovementMethod.getInstance());
+
+                //Feedback
+                TextView issueView =(TextView) d.findViewById(R.id.issue_link);
+                issueView.setMovementMethod(LinkMovementMethod.getInstance());
+
+                //Credit Icon
+                Spanned icon = Html.fromHtml(getString(R.string.iconweb));
+                TextView about_icon = (TextView)d.findViewById(R.id.about_icon);
+                about_icon.setText(icon);
+                about_icon.setMovementMethod(LinkMovementMethod.getInstance());
+
+                //Credit Mikiya
+                Spanned mikiya = Html.fromHtml(getString(R.string.mikiya_web));
+                TextView about_mikiya = (TextView)d.findViewById(R.id.about_mikiya);
+                about_mikiya.setText(mikiya);
+                about_mikiya.setMovementMethod(LinkMovementMethod.getInstance());
+
+                //Credit kashifo
+                Spanned kashifo = Html.fromHtml(getString(R.string.kashifo_web));
+                TextView about_kashifo = (TextView)d.findViewById(R.id.about_kashifo);
+                about_kashifo.setText(kashifo);
+                about_kashifo.setMovementMethod(LinkMovementMethod.getInstance());
+
+                Button okButton = (Button) d.findViewById(R.id.about_button);
+                okButton.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View arg0) {
+                        d.dismiss();
+                    }
+                });
+
+                d.show();
+
+                return true;
         }
 
+        return super.onOptionsItemSelected(item);
+        //return false;
     }
-    */
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (resultCode == Activity.RESULT_OK) {
-            String location = intent.getExtras().getString("data");
 
-            if(pick_type=="Source") {
-                tv_source.setText(location);
-                if(tv_destination.getText().toString().equals("")) {
-                    txtInfo.setText("Select Destination");
+            if((requestCode==FOLDER_PICKER_CODE)||(requestCode==FILE_PICKER_CODE)) {
+
+                String location = intent.getExtras().getString("data");
+
+                if (pick_type.equals("Source")) {
+                    tv_source.setText(location);
+                    if (tv_destination.getText().toString().equals("")) {
+                        txtInfo.setText("Select Destination");
+                    }
+
+                    else if(password=="") {
+                        txtInfo.setText("Insert Password");
+                    }
+
+                    else {
+                        txtInfo.setText("Ready to go");
+                        but_decipher.setEnabled(true);
+                    }
+                } else if (pick_type.equals("Destination")) {
+                    tv_destination.setText(location);
+
+                    if (tv_source.getText().toString().equals("")) {
+                        txtInfo.setText("Select Source");
+                    }
+
+                    else if(password=="") {
+                        txtInfo.setText("Insert Password");
+                    }
+
+                    else {
+                        txtInfo.setText("Ready to go");
+                        but_decipher.setEnabled(true);
+                    }
+
                 }
-                else if(password=="") {
-                    txtInfo.setText("Insert Password");
-                }
-                else {
-                    txtInfo.setText("Ready to go");
-                    but_decipher.setEnabled(true);
-                }
+
+                pick_type = "";
             }
-            else if(pick_type=="Destination") {
-                tv_destination.setText(location);
 
-                if(tv_source.getText().toString().equals("")) {
-                    txtInfo.setText("Select Source");
-                }
-                else if(password=="") {
-                    txtInfo.setText("Insert Password");
-                }
-                else {
-                    txtInfo.setText("Ready to go");
-                    but_decipher.setEnabled(true);
-                }
-
+            /*
+            if(requestCode==PASSWORD_CODE){
+                password=intent.getExtras().getString("data");
             }
-
-            pick_type="";
+            */
         }
     }
 
@@ -147,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
         pick_type="Source";
         Intent intent = new Intent(this, FolderPicker.class);
         intent.putExtra("pickFiles", true);
+        intent.putExtra("title", "Select File");
         startActivityForResult(intent, FILE_PICKER_CODE);
     }
 
@@ -161,6 +229,7 @@ public class MainActivity extends AppCompatActivity {
         pick_type="Destination";
         Intent intent = new Intent(this, FolderPicker.class);
         intent.putExtra("pickFiles", true);
+        intent.putExtra("title", "Select File");
         startActivityForResult(intent, FILE_PICKER_CODE);
     }
 
@@ -201,10 +270,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void PasswordDialog(){
+        Intent intent = new Intent(this, PasswordActivity.class);
+        startActivityForResult(intent, PASSWORD_CODE);
+    }
 
     private void decipher(boolean dirMode, boolean recursiveMode) {
         errorFiles.clear();
         successFiles.clear();
+
+        if (password.equals(""))
+            password="prova";
 
         if (dirMode) {
             decipherMultipleFiles(srcFile, dstFile);
