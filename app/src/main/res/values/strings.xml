@@ -9,7 +9,7 @@
     <string name="allow_storage_permission">Allow permissions to view files</string>
     <string name="gitHome"><a href="https://github.com/Sky-84/hbs_decipher_for_Android">Homepage</a></string>
     <string name="gitIssue"><a href="https://github.com/Sky-84/hbs_decipher_for_Android/issues">Feedback</a></string>
-    <string name="iconweb">The HBS Decipher for Android icon was created by &lt;a href=https://www.iconfinder.com/Ruslancorel>Rudez Studio&lt;/a> and is licensed under the terms of the &lt;a href=http://creativecommons.org/licenses/by/3.0/>Creative Commons (Attribution 3.0 Unported)&lt;/a>.</string>
+    <string name="iconweb">The app icon was created by &lt;a href=https://www.iconfinder.com/Ruslancorel>Rudez Studio&lt;/a> and is licensed under the terms of the &lt;a href=http://creativecommons.org/licenses/by/3.0/>Creative Commons (Attribution 3.0 Unported)&lt;/a>.</string>
     <string name="mikiya_web">Special thanks to &lt;a href=https://keybase.io/yoannttz>Mikiya83&lt;/a> who supported me to write this app and made the &lt;a href=https://github.com/Mikiya83/hbs_decipher>decipher engine&lt;/a> as well as part of the &lt;a href=https://github.com/Mikiya83/hbs_decipher_gui>GUI&lt;/a> code. His software is licensed under the terms of the &lt;a href=http://www.gnu.org/licenses/>GNU General Public License&lt;/a> version 3.</string>
     <string name="kashifo_web">The &lt;a href=https://github.com/kashifo/android-folder-picker-library>android-folder-picker-library&lt;/a> is licensed under &lt;a href=http://www.apache.org/licenses/LICENSE-2.0>Apache 2.0&lt;/a>. Copyleft 2017 Kashif Anwaar.</string>
 </resources>
